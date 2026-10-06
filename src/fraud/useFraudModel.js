@@ -9,7 +9,7 @@
 
 import { useCallback, useEffect, useRef, useState } from "react";
 import { loadSavedModel } from "./isolationForest";
-import { extractFeatures, riskLevel } from "./fraudUtils";
+import { generateAnomalyScore, generateBatchAnomalyScores } from "./anomalyScorer";
 
 /**
  * @typedef {object} FraudModelState
@@ -17,6 +17,7 @@ import { extractFeatures, riskLevel } from "./fraudUtils";
  * @property {boolean}   loading   - true while the model JSON is being fetched
  * @property {string | null} error - non-null if loading failed
  * @property {function}  scoreTransaction  - scores a raw transaction object
+ * @property {function}  scoreBatch - scores an array of transactions with distribution metrics
  */
 
 /**
@@ -67,26 +68,25 @@ export function useFraudModel() {
   }, []);
 
   /**
-   * Score a single raw FinSight transaction.
+   * Score a single raw FinSight transaction with complete anomaly telemetry.
    *
    * @param {object} transaction
-   * @returns {{ score: number, risk: { level: string, label: string, color: string } } | null}
-   *   null when the model has not loaded yet.
+   * @returns {object | null} Full anomaly score report or null if model pending
    */
   const scoreTransaction = useCallback((transaction) => {
     const m = modelRef.current;
     if (!m) return null;
-
-    const features = extractFeatures(transaction, {
-      feature_stats: m.featureStats,
-      category_map:  m.categoryMap,
-    });
-
-    const score = m.score(features);
-    const risk  = riskLevel(score);
-
-    return { score, risk };
+    return generateAnomalyScore(transaction, m);
   }, []);
 
-  return { model, loading, error, scoreTransaction };
+  /**
+   * Batch score an array of transactions.
+   */
+  const scoreBatch = useCallback((transactions) => {
+    const m = modelRef.current;
+    if (!m) return { scored: transactions, summary: null };
+    return generateBatchAnomalyScores(transactions, m);
+  }, []);
+
+  return { model, loading, error, scoreTransaction, scoreBatch };
 }

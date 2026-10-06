@@ -5,7 +5,7 @@ function FraudMonitor({
   streamState,
   modelLoading,
   modelError,
-  modelMetadata,
+  model,
 }) {
   return (
     <section className="page">
@@ -30,6 +30,7 @@ function FraudMonitor({
         streamState={streamState}
         modelLoading={modelLoading}
         modelError={modelError}
+        model={model}
       />
 
       {/* ── Pipeline Architecture Insights Card ── */}

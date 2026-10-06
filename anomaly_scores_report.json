@@ -1,0 +1,672 @@
+{
+  "engine": "FinSight Isolation Forest Anomaly Scoring Engine",
+  "version": "1.1.0",
+  "evaluatedAt": "2026-10-06T04:49:32.034Z",
+  "summary": {
+    "total": 14,
+    "averageScore": 56.8,
+    "highRiskCount": 6,
+    "mediumRiskCount": 3,
+    "lowRiskCount": 5,
+    "anomalyRate": 64.3,
+    "distribution": [
+      {
+        "range": "0 - 20%",
+        "count": 0,
+        "label": "Very Low"
+      },
+      {
+        "range": "20 - 40%",
+        "count": 0,
+        "label": "Low"
+      },
+      {
+        "range": "40 - 60%",
+        "count": 7,
+        "label": "Normal"
+      },
+      {
+        "range": "60 - 80%",
+        "count": 7,
+        "label": "Elevated"
+      },
+      {
+        "range": "80 - 100%",
+        "count": 0,
+        "label": "Severe"
+      }
+    ]
+  },
+  "records": [
+    {
+      "id": "TX-101",
+      "description": "Supermart Groceries",
+      "amount": 1450,
+      "category": "Food",
+      "time": "14:30:00",
+      "anomalyScore": 0.4258088664675244,
+      "anomalyPercentage": 42.6,
+      "riskLevel": "low",
+      "decision": "AUTO_APPROVE",
+      "decisionAction": "Approved — low risk signature matches historical benign patterns",
+      "avgPathLength": 12.62,
+      "expectedPathLength": 10.25,
+      "contributingFactors": [
+        {
+          "name": "Day Pattern",
+          "description": "Standard weekday business processing",
+          "severity": "low",
+          "rawWeight": 25,
+          "percentage": 40
+        },
+        {
+          "name": "Category Risk",
+          "description": "Category \"Food\" represents regular utility/living spending",
+          "severity": "low",
+          "rawWeight": 20,
+          "percentage": 32
+        },
+        {
+          "name": "Transaction Hour",
+          "description": "14:00 falls in typical daylight spending hours",
+          "severity": "low",
+          "rawWeight": 10,
+          "percentage": 16
+        },
+        {
+          "name": "Transaction Amount",
+          "description": "₹1,450 within regular spending bracket",
+          "severity": "low",
+          "rawWeight": 8,
+          "percentage": 13
+        }
+      ],
+      "explanation": "Standard benign transaction traversing deep into isolation trees (12.62 edges). Normal spending pattern."
+    },
+    {
+      "id": "TX-102",
+      "description": "Petrol Pump Refuel",
+      "amount": 1200,
+      "category": "Transport",
+      "time": "09:15:00",
+      "anomalyScore": 0.43338567193357413,
+      "anomalyPercentage": 43.3,
+      "riskLevel": "low",
+      "decision": "AUTO_APPROVE",
+      "decisionAction": "Approved — low risk signature matches historical benign patterns",
+      "avgPathLength": 12.36,
+      "expectedPathLength": 10.25,
+      "contributingFactors": [
+        {
+          "name": "Day Pattern",
+          "description": "Standard weekday business processing",
+          "severity": "low",
+          "rawWeight": 25,
+          "percentage": 39
+        },
+        {
+          "name": "Category Risk",
+          "description": "Category \"Transport\" represents regular utility/living spending",
+          "severity": "low",
+          "rawWeight": 20,
+          "percentage": 31
+        },
+        {
+          "name": "Transaction Hour",
+          "description": "9:00 falls in typical daylight spending hours",
+          "severity": "low",
+          "rawWeight": 10,
+          "percentage": 16
+        },
+        {
+          "name": "Transaction Amount",
+          "description": "₹1,200 within regular spending bracket",
+          "severity": "low",
+          "rawWeight": 9,
+          "percentage": 14
+        }
+      ],
+      "explanation": "Standard benign transaction traversing deep into isolation trees (12.36 edges). Normal spending pattern."
+    },
+    {
+      "id": "TX-103",
+      "description": "Monthly House Rent",
+      "amount": 14000,
+      "category": "Housing",
+      "time": "11:00:00",
+      "anomalyScore": 0.5129506748547331,
+      "anomalyPercentage": 51.3,
+      "riskLevel": "medium",
+      "decision": "MANUAL_AUDIT",
+      "decisionAction": "Flagged: queue for post-settlement compliance review",
+      "avgPathLength": 9.87,
+      "expectedPathLength": 10.25,
+      "contributingFactors": [
+        {
+          "name": "Transaction Amount",
+          "description": "₹14,000 is 1.2σ above normal baseline (₹4200)",
+          "severity": "low",
+          "rawWeight": 29,
+          "percentage": 35
+        },
+        {
+          "name": "Day Pattern",
+          "description": "Standard weekday business processing",
+          "severity": "low",
+          "rawWeight": 25,
+          "percentage": 30
+        },
+        {
+          "name": "Category Risk",
+          "description": "Category \"Housing\" represents regular utility/living spending",
+          "severity": "low",
+          "rawWeight": 20,
+          "percentage": 24
+        },
+        {
+          "name": "Transaction Hour",
+          "description": "11:00 falls in typical daylight spending hours",
+          "severity": "low",
+          "rawWeight": 10,
+          "percentage": 12
+        }
+      ],
+      "explanation": "Moderate deviation detected with average path length 9.87. Elevated transaction amount."
+    },
+    {
+      "id": "TX-104",
+      "description": "High-Speed Broadband Bill",
+      "amount": 999,
+      "category": "Utilities",
+      "time": "15:45:00",
+      "anomalyScore": 0.45704463341647494,
+      "anomalyPercentage": 45.7,
+      "riskLevel": "low",
+      "decision": "AUTO_APPROVE",
+      "decisionAction": "Approved — low risk signature matches historical benign patterns",
+      "avgPathLength": 11.57,
+      "expectedPathLength": 10.25,
+      "contributingFactors": [
+        {
+          "name": "Day Pattern",
+          "description": "Standard weekday business processing",
+          "severity": "low",
+          "rawWeight": 25,
+          "percentage": 39
+        },
+        {
+          "name": "Category Risk",
+          "description": "Category \"Utilities\" represents regular utility/living spending",
+          "severity": "low",
+          "rawWeight": 20,
+          "percentage": 31
+        },
+        {
+          "name": "Transaction Hour",
+          "description": "15:00 falls in typical daylight spending hours",
+          "severity": "low",
+          "rawWeight": 10,
+          "percentage": 16
+        },
+        {
+          "name": "Transaction Amount",
+          "description": "₹999 within regular spending bracket",
+          "severity": "low",
+          "rawWeight": 9,
+          "percentage": 14
+        }
+      ],
+      "explanation": "Standard benign transaction traversing deep into isolation trees (11.57 edges). Normal spending pattern."
+    },
+    {
+      "id": "TX-105",
+      "description": "Swiggy Dinner Order",
+      "amount": 480,
+      "category": "Food",
+      "time": "20:30:00",
+      "anomalyScore": 0.48332550238384836,
+      "anomalyPercentage": 48.3,
+      "riskLevel": "low",
+      "decision": "AUTO_APPROVE",
+      "decisionAction": "Approved — low risk signature matches historical benign patterns",
+      "avgPathLength": 10.75,
+      "expectedPathLength": 10.25,
+      "contributingFactors": [
+        {
+          "name": "Day Pattern",
+          "description": "Standard weekday business processing",
+          "severity": "low",
+          "rawWeight": 25,
+          "percentage": 38
+        },
+        {
+          "name": "Category Risk",
+          "description": "Category \"Food\" represents regular utility/living spending",
+          "severity": "low",
+          "rawWeight": 20,
+          "percentage": 30
+        },
+        {
+          "name": "Transaction Amount",
+          "description": "₹480 within regular spending bracket",
+          "severity": "low",
+          "rawWeight": 11,
+          "percentage": 17
+        },
+        {
+          "name": "Transaction Hour",
+          "description": "20:00 falls in typical daylight spending hours",
+          "severity": "low",
+          "rawWeight": 10,
+          "percentage": 15
+        }
+      ],
+      "explanation": "Standard benign transaction traversing deep into isolation trees (10.75 edges). Normal spending pattern."
+    },
+    {
+      "id": "TX-106",
+      "description": "Monthly Software Salary",
+      "amount": 75000,
+      "category": "Salary",
+      "time": "10:00:00",
+      "anomalyScore": 0.5847446599888314,
+      "anomalyPercentage": 58.5,
+      "riskLevel": "medium",
+      "decision": "MANUAL_AUDIT",
+      "decisionAction": "Flagged: queue for post-settlement compliance review",
+      "avgPathLength": 7.93,
+      "expectedPathLength": 10.25,
+      "contributingFactors": [
+        {
+          "name": "Transaction Amount",
+          "description": "₹75,000 is 8.3σ above normal baseline (₹4200)",
+          "severity": "high",
+          "rawWeight": 100,
+          "percentage": 65
+        },
+        {
+          "name": "Day Pattern",
+          "description": "Standard weekday business processing",
+          "severity": "low",
+          "rawWeight": 25,
+          "percentage": 16
+        },
+        {
+          "name": "Category Risk",
+          "description": "Category \"Salary\" represents regular utility/living spending",
+          "severity": "low",
+          "rawWeight": 20,
+          "percentage": 13
+        },
+        {
+          "name": "Transaction Hour",
+          "description": "10:00 falls in typical daylight spending hours",
+          "severity": "low",
+          "rawWeight": 10,
+          "percentage": 6
+        }
+      ],
+      "explanation": "Moderate deviation detected with average path length 7.93. Elevated transaction amount."
+    },
+    {
+      "id": "TX-201",
+      "description": "Electronics Mall Weekend Purchase",
+      "amount": 24500,
+      "category": "Shopping",
+      "time": "21:40:00",
+      "anomalyScore": 0.6200644115450771,
+      "anomalyPercentage": 62,
+      "riskLevel": "high",
+      "decision": "BLOCK_AND_REVIEW",
+      "decisionAction": "Intervention recommended: prompt 2FA step-up or freeze transaction card",
+      "avgPathLength": 7.06,
+      "expectedPathLength": 10.25,
+      "contributingFactors": [
+        {
+          "name": "Category Risk",
+          "description": "Category \"Shopping\" historically exhibits higher chargeback rates",
+          "severity": "medium",
+          "rawWeight": 70,
+          "percentage": 35
+        },
+        {
+          "name": "Transaction Amount",
+          "description": "₹24,500 is 2.4σ above normal baseline (₹4200)",
+          "severity": "medium",
+          "rawWeight": 60,
+          "percentage": 30
+        },
+        {
+          "name": "Day Pattern",
+          "description": "Weekend spending sequence flagged for elevated transaction velocity",
+          "severity": "medium",
+          "rawWeight": 60,
+          "percentage": 30
+        },
+        {
+          "name": "Transaction Hour",
+          "description": "21:00 falls in typical daylight spending hours",
+          "severity": "low",
+          "rawWeight": 10,
+          "percentage": 5
+        }
+      ],
+      "explanation": "Anomalous transaction isolated at shallow tree depth (7.06 vs expected 10.25). Primary driver: category risk (Category \"Shopping\" historically exhibits higher chargeback rates)."
+    },
+    {
+      "id": "TX-202",
+      "description": "Weekend Resort Getaway",
+      "amount": 18500,
+      "category": "Entertainment",
+      "time": "22:15:00",
+      "anomalyScore": 0.6130573910801647,
+      "anomalyPercentage": 61.3,
+      "riskLevel": "medium",
+      "decision": "MANUAL_AUDIT",
+      "decisionAction": "Flagged: queue for post-settlement compliance review",
+      "avgPathLength": 7.23,
+      "expectedPathLength": 10.25,
+      "contributingFactors": [
+        {
+          "name": "Category Risk",
+          "description": "Category \"Entertainment\" historically exhibits higher chargeback rates",
+          "severity": "medium",
+          "rawWeight": 70,
+          "percentage": 38
+        },
+        {
+          "name": "Day Pattern",
+          "description": "Weekend spending sequence flagged for elevated transaction velocity",
+          "severity": "low",
+          "rawWeight": 60,
+          "percentage": 33
+        },
+        {
+          "name": "Transaction Amount",
+          "description": "₹18,500 is 1.7σ above normal baseline (₹4200)",
+          "severity": "medium",
+          "rawWeight": 42,
+          "percentage": 23
+        },
+        {
+          "name": "Transaction Hour",
+          "description": "22:00 falls in typical daylight spending hours",
+          "severity": "low",
+          "rawWeight": 10,
+          "percentage": 5
+        }
+      ],
+      "explanation": "Moderate deviation detected with average path length 7.23. Elevated category risk."
+    },
+    {
+      "id": "TX-203",
+      "description": "Late-Night Pharmacy Delivery",
+      "amount": 3200,
+      "category": "Healthcare",
+      "time": "23:55:00",
+      "anomalyScore": 0.45686611391659276,
+      "anomalyPercentage": 45.7,
+      "riskLevel": "low",
+      "decision": "AUTO_APPROVE",
+      "decisionAction": "Approved — low risk signature matches historical benign patterns",
+      "avgPathLength": 11.58,
+      "expectedPathLength": 10.25,
+      "contributingFactors": [
+        {
+          "name": "Transaction Hour",
+          "description": "23:00 falls in typical daylight spending hours",
+          "severity": "low",
+          "rawWeight": 50,
+          "percentage": 51
+        },
+        {
+          "name": "Day Pattern",
+          "description": "Standard weekday business processing",
+          "severity": "low",
+          "rawWeight": 25,
+          "percentage": 26
+        },
+        {
+          "name": "Category Risk",
+          "description": "Category \"Healthcare\" represents regular utility/living spending",
+          "severity": "low",
+          "rawWeight": 20,
+          "percentage": 20
+        },
+        {
+          "name": "Transaction Amount",
+          "description": "₹3,200 within regular spending bracket",
+          "severity": "low",
+          "rawWeight": 3,
+          "percentage": 3
+        }
+      ],
+      "explanation": "Standard benign transaction traversing deep into isolation trees (11.58 edges). Normal spending pattern."
+    },
+    {
+      "id": "TX-301",
+      "description": "Luxury Diamonds Boutique",
+      "amount": 285000,
+      "category": "Shopping",
+      "time": "03:15:00",
+      "anomalyScore": 0.6761971843273928,
+      "anomalyPercentage": 67.6,
+      "riskLevel": "high",
+      "decision": "BLOCK_AND_REVIEW",
+      "decisionAction": "Intervention recommended: prompt 2FA step-up or freeze transaction card",
+      "avgPathLength": 5.78,
+      "expectedPathLength": 10.25,
+      "contributingFactors": [
+        {
+          "name": "Transaction Amount",
+          "description": "₹2,85,000 is 33.0σ above normal baseline (₹4200)",
+          "severity": "high",
+          "rawWeight": 100,
+          "percentage": 35
+        },
+        {
+          "name": "Transaction Hour",
+          "description": "3:00 is an off-hours window with 4.2x higher fraud velocity",
+          "severity": "high",
+          "rawWeight": 90,
+          "percentage": 32
+        },
+        {
+          "name": "Category Risk",
+          "description": "Category \"Shopping\" historically exhibits higher chargeback rates",
+          "severity": "medium",
+          "rawWeight": 70,
+          "percentage": 25
+        },
+        {
+          "name": "Day Pattern",
+          "description": "Standard weekday business processing",
+          "severity": "low",
+          "rawWeight": 25,
+          "percentage": 9
+        }
+      ],
+      "explanation": "Anomalous transaction isolated at shallow tree depth (5.78 vs expected 10.25). Primary driver: transaction amount (₹2,85,000 is 33.0σ above normal baseline (₹4200))."
+    },
+    {
+      "id": "TX-302",
+      "description": "Crypto OTC Instant Exchange",
+      "amount": 420000,
+      "category": "Other",
+      "time": "02:40:00",
+      "anomalyScore": 0.7077900284525966,
+      "anomalyPercentage": 70.8,
+      "riskLevel": "high",
+      "decision": "BLOCK_AND_REVIEW",
+      "decisionAction": "Intervention recommended: prompt 2FA step-up or freeze transaction card",
+      "avgPathLength": 5.11,
+      "expectedPathLength": 10.25,
+      "contributingFactors": [
+        {
+          "name": "Transaction Amount",
+          "description": "₹4,20,000 is 48.9σ above normal baseline (₹4200)",
+          "severity": "high",
+          "rawWeight": 100,
+          "percentage": 35
+        },
+        {
+          "name": "Transaction Hour",
+          "description": "2:00 is an off-hours window with 4.2x higher fraud velocity",
+          "severity": "high",
+          "rawWeight": 90,
+          "percentage": 32
+        },
+        {
+          "name": "Category Risk",
+          "description": "Category \"Other\" historically exhibits higher chargeback rates",
+          "severity": "medium",
+          "rawWeight": 70,
+          "percentage": 25
+        },
+        {
+          "name": "Day Pattern",
+          "description": "Standard weekday business processing",
+          "severity": "low",
+          "rawWeight": 25,
+          "percentage": 9
+        }
+      ],
+      "explanation": "Anomalous transaction isolated at shallow tree depth (5.11 vs expected 10.25). Primary driver: transaction amount (₹4,20,000 is 48.9σ above normal baseline (₹4200))."
+    },
+    {
+      "id": "TX-303",
+      "description": "Cross-Border Wire Transfer",
+      "amount": 560000,
+      "category": "Other",
+      "time": "03:55:00",
+      "anomalyScore": 0.698119287782049,
+      "anomalyPercentage": 69.8,
+      "riskLevel": "high",
+      "decision": "BLOCK_AND_REVIEW",
+      "decisionAction": "Intervention recommended: prompt 2FA step-up or freeze transaction card",
+      "avgPathLength": 5.31,
+      "expectedPathLength": 10.25,
+      "contributingFactors": [
+        {
+          "name": "Transaction Amount",
+          "description": "₹5,60,000 is 65.4σ above normal baseline (₹4200)",
+          "severity": "high",
+          "rawWeight": 100,
+          "percentage": 35
+        },
+        {
+          "name": "Transaction Hour",
+          "description": "3:00 is an off-hours window with 4.2x higher fraud velocity",
+          "severity": "high",
+          "rawWeight": 90,
+          "percentage": 32
+        },
+        {
+          "name": "Category Risk",
+          "description": "Category \"Other\" historically exhibits higher chargeback rates",
+          "severity": "medium",
+          "rawWeight": 70,
+          "percentage": 25
+        },
+        {
+          "name": "Day Pattern",
+          "description": "Standard weekday business processing",
+          "severity": "low",
+          "rawWeight": 25,
+          "percentage": 9
+        }
+      ],
+      "explanation": "Anomalous transaction isolated at shallow tree depth (5.31 vs expected 10.25). Primary driver: transaction amount (₹5,60,000 is 65.4σ above normal baseline (₹4200))."
+    },
+    {
+      "id": "TX-304",
+      "description": "Offshore Gaming Merchant",
+      "amount": 165000,
+      "category": "Entertainment",
+      "time": "04:10:00",
+      "anomalyScore": 0.6347421315966272,
+      "anomalyPercentage": 63.5,
+      "riskLevel": "high",
+      "decision": "BLOCK_AND_REVIEW",
+      "decisionAction": "Intervention recommended: prompt 2FA step-up or freeze transaction card",
+      "avgPathLength": 6.72,
+      "expectedPathLength": 10.25,
+      "contributingFactors": [
+        {
+          "name": "Transaction Amount",
+          "description": "₹1,65,000 is 18.9σ above normal baseline (₹4200)",
+          "severity": "high",
+          "rawWeight": 100,
+          "percentage": 35
+        },
+        {
+          "name": "Transaction Hour",
+          "description": "4:00 is an off-hours window with 4.2x higher fraud velocity",
+          "severity": "high",
+          "rawWeight": 90,
+          "percentage": 32
+        },
+        {
+          "name": "Category Risk",
+          "description": "Category \"Entertainment\" historically exhibits higher chargeback rates",
+          "severity": "medium",
+          "rawWeight": 70,
+          "percentage": 25
+        },
+        {
+          "name": "Day Pattern",
+          "description": "Standard weekday business processing",
+          "severity": "low",
+          "rawWeight": 25,
+          "percentage": 9
+        }
+      ],
+      "explanation": "Anomalous transaction isolated at shallow tree depth (6.72 vs expected 10.25). Primary driver: transaction amount (₹1,65,000 is 18.9σ above normal baseline (₹4200))."
+    },
+    {
+      "id": "TX-305",
+      "description": "High-Value ATM Cash Burst",
+      "amount": 80000,
+      "category": "Other",
+      "time": "04:45:00",
+      "anomalyScore": 0.6430792024891704,
+      "anomalyPercentage": 64.3,
+      "riskLevel": "high",
+      "decision": "BLOCK_AND_REVIEW",
+      "decisionAction": "Intervention recommended: prompt 2FA step-up or freeze transaction card",
+      "avgPathLength": 6.53,
+      "expectedPathLength": 10.25,
+      "contributingFactors": [
+        {
+          "name": "Transaction Amount",
+          "description": "₹80,000 is 8.9σ above normal baseline (₹4200)",
+          "severity": "high",
+          "rawWeight": 100,
+          "percentage": 35
+        },
+        {
+          "name": "Transaction Hour",
+          "description": "4:00 is an off-hours window with 4.2x higher fraud velocity",
+          "severity": "high",
+          "rawWeight": 90,
+          "percentage": 32
+        },
+        {
+          "name": "Category Risk",
+          "description": "Category \"Other\" historically exhibits higher chargeback rates",
+          "severity": "medium",
+          "rawWeight": 70,
+          "percentage": 25
+        },
+        {
+          "name": "Day Pattern",
+          "description": "Standard weekday business processing",
+          "severity": "low",
+          "rawWeight": 25,
+          "percentage": 9
+        }
+      ],
+      "explanation": "Anomalous transaction isolated at shallow tree depth (6.53 vs expected 10.25). Primary driver: transaction amount (₹80,000 is 8.9σ above normal baseline (₹4200))."
+    }
+  ]
+}

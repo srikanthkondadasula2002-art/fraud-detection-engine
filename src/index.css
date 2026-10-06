@@ -1414,3 +1414,316 @@ a {
     text-align: left;
   }
 }
+
+/* ─── Commit 3: Anomaly Score Generation & Telemetry Styles ──────────────── */
+
+.anomaly-score-cell {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+  padding: 4px 8px;
+  border-radius: 6px;
+  transition: background 0.15s ease;
+  width: fit-content;
+}
+
+.anomaly-score-cell:hover {
+  background: #f1f5f9;
+}
+
+.anomaly-score-cell .info-icon {
+  color: #94a3b8;
+  opacity: 0.6;
+  transition: opacity 0.15s;
+}
+
+.anomaly-score-cell:hover .info-icon {
+  opacity: 1;
+  color: #2563eb;
+}
+
+.anomaly-score-track {
+  width: 50px;
+  height: 6px;
+  background: #e2e8f0;
+  border-radius: 999px;
+  overflow: hidden;
+}
+
+.anomaly-score-fill {
+  height: 100%;
+  border-radius: 999px;
+  transition: width 0.3s ease;
+}
+
+.fill-low {
+  background: #16a34a;
+}
+
+.fill-medium {
+  background: #f59e0b;
+}
+
+.fill-high {
+  background: #dc2626;
+}
+
+.anomaly-score-text {
+  font-size: 13px;
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+}
+
+.text-low {
+  color: #16a34a;
+}
+
+.text-medium {
+  color: #d97706;
+}
+
+.text-high {
+  color: #dc2626;
+}
+
+.stream-threshold-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  margin-top: 14px;
+  padding-top: 12px;
+  border-top: 1px dashed #e2e8f0;
+  flex-wrap: wrap;
+}
+
+.score-badge-pill {
+  display: inline-block;
+  padding: 4px 10px;
+  border-radius: 999px;
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.pill-low {
+  background: #dcfce7;
+  color: #166534;
+}
+
+.pill-medium {
+  background: #fef3c7;
+  color: #92400e;
+}
+
+.pill-high {
+  background: #fee2e2;
+  color: #991b1b;
+}
+
+.anomaly-explanation-card {
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+  border-radius: 10px;
+  padding: 12px 14px;
+}
+
+.decision-banner {
+  font-size: 12px;
+  background: #eff6ff;
+  border: 1px solid #bfdbfe;
+  color: #1e40af;
+  padding: 6px 10px;
+  border-radius: 6px;
+}
+
+.attribution-list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.attribution-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 8px 10px;
+  background: #f8fafc;
+  border: 1px solid #edf2f7;
+  border-radius: 8px;
+  gap: 12px;
+}
+
+.attribution-info {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  flex: 1;
+}
+
+.attribution-name {
+  font-size: 13px;
+  font-weight: 600;
+  color: #1e293b;
+}
+
+.attribution-desc {
+  font-size: 12px;
+  color: #64748b;
+}
+
+.attribution-meter {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  min-width: 110px;
+}
+
+.attribution-meter-track {
+  flex: 1;
+  height: 6px;
+  background: #e2e8f0;
+  border-radius: 999px;
+  overflow: hidden;
+}
+
+.attribution-meter-fill {
+  height: 100%;
+  border-radius: 999px;
+}
+
+.attribution-pct {
+  font-size: 12px;
+  font-weight: 700;
+  min-width: 32px;
+  text-align: right;
+  color: #334155;
+}
+
+/* Simulator Widget */
+.stream-simulator-card {
+  border: 1px solid #bfdbfe;
+  background: linear-gradient(180deg, #ffffff 0%, #f0f7ff 100%);
+}
+
+.simulator-form-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 14px;
+}
+
+.simulator-results-panel {
+  background: #ffffff;
+  border: 1px solid #cbd5e1;
+  border-radius: 12px;
+  padding: 16px;
+  box-shadow: 0 4px 12px rgba(15, 23, 42, 0.05);
+}
+
+.sim-result-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+
+.sim-path-metrics {
+  display: flex;
+  gap: 14px;
+  background: #f8fafc;
+  padding: 8px 14px;
+  border-radius: 8px;
+  border: 1px solid #e2e8f0;
+}
+
+.sim-path-stat {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.sim-path-stat .stat-label {
+  font-size: 11px;
+  color: #64748b;
+}
+
+.sim-path-stat .stat-val {
+  font-size: 13px;
+  font-weight: 700;
+  color: #0f172a;
+}
+
+/* Analytics Fraud Summary */
+.analytics-fraud-summary-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 12px;
+}
+
+.fraud-summary-stat-box {
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+  border-radius: 10px;
+  padding: 14px;
+  display: flex;
+  flex-direction: column;
+}
+
+.fraud-summary-stat-box .stat-label {
+  font-size: 12px;
+  color: #64748b;
+  margin-bottom: 4px;
+}
+
+.fraud-summary-stat-box .stat-value {
+  font-size: 24px;
+  font-weight: 800;
+  color: #1e293b;
+}
+
+.fraud-summary-stat-box .stat-desc {
+  font-size: 12px;
+  color: #94a3b8;
+  margin-top: 4px;
+}
+
+.category-anomaly-bar-list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.cat-anomaly-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.cat-name {
+  width: 120px;
+  font-size: 13px;
+  font-weight: 600;
+  color: #334155;
+}
+
+.cat-track {
+  flex: 1;
+  height: 8px;
+  background: #e2e8f0;
+  border-radius: 999px;
+  overflow: hidden;
+}
+
+.cat-fill {
+  height: 100%;
+  border-radius: 999px;
+}
+
+.cat-score {
+  width: 45px;
+  font-size: 13px;
+  font-weight: 700;
+  text-align: right;
+  color: #0f172a;
+}

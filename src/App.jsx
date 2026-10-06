@@ -25,8 +25,8 @@ const initialBudgets = [
 ];
 
 function App() {
-  // ── Fraud Prediction Pipeline ─ Commit 1: Load saved Isolation Forest model ──
-  const { scoreTransaction, loading: modelLoading, error: modelError } = useFraudModel();
+  // ── Fraud Prediction Pipeline ─ Commit 1 & 3: Model and Anomaly Scoring ──
+  const { model, scoreTransaction, scoreBatch, loading: modelLoading, error: modelError } = useFraudModel();
 
   // ── Fraud Prediction Pipeline ─ Commit 2: Apply model on streaming transactions ──
   const streamState = useTransactionStream({
@@ -128,6 +128,8 @@ function App() {
       budgets,
       totals,
       onNavigate: setActivePage,
+      model,
+      scoreBatch,
       modelLoading,
       modelError,
       streamState,

@@ -117,6 +117,67 @@ export class IsolationForest {
     return Math.pow(2, -avgPathLength / c);
   }
 
+  /**
+   * Compute comprehensive anomaly score with per-tree path length telemetry.
+   *
+   * @param {number[]} features - Feature vector matching `this.features` order
+   * @returns {{
+   *   score: number,
+   *   avgPathLength: number,
+   *   cFactor: number,
+   *   minPathLength: number,
+   *   maxPathLength: number,
+   *   pathLengthStd: number,
+   *   treeCount: number,
+   *   confidence: number,
+   *   pathLengths: number[]
+   * }}
+   */
+  scoreDetailed(features) {
+    const pathLengths = new Array(this._nodeMaps.length);
+    let totalPathLength = 0;
+    let minPath = Infinity;
+    let maxPath = -Infinity;
+
+    for (let i = 0; i < this._nodeMaps.length; i++) {
+      const h = pathLength(this._nodeMaps[i], features);
+      pathLengths[i] = h;
+      totalPathLength += h;
+      if (h < minPath) minPath = h;
+      if (h > maxPath) maxPath = h;
+    }
+
+    const treeCount = this._nodeMaps.length;
+    const avgPathLength = totalPathLength / treeCount;
+    const c = this.cFactor > 0 ? this.cFactor : cFactor(this._meta.maxSamples);
+
+    // Standard deviation of path lengths across trees
+    let variance = 0;
+    for (let i = 0; i < treeCount; i++) {
+      const diff = pathLengths[i] - avgPathLength;
+      variance += diff * diff;
+    }
+    const pathLengthStd = Math.sqrt(variance / treeCount);
+
+    // Anomaly score  s(x, n) = 2^( -E[h(x)] / c(n) )
+    const rawScore = Math.pow(2, -avgPathLength / c);
+
+    // Confidence: lower variance across trees indicates higher forest consensus
+    const consensus = Math.max(0, Math.min(1, 1 - (pathLengthStd / (c * 0.6))));
+
+    return {
+      score: rawScore,
+      avgPathLength: Math.round(avgPathLength * 100) / 100,
+      cFactor: Math.round(c * 100) / 100,
+      minPathLength: Math.round(minPath * 100) / 100,
+      maxPathLength: Math.round(maxPath * 100) / 100,
+      pathLengthStd: Math.round(pathLengthStd * 100) / 100,
+      treeCount,
+      confidence: Math.round(consensus * 100) / 100,
+      pathLengths,
+    };
+  }
+
   /** Human-readable metadata for debugging / display */
   get metadata() {
     return { ...this._meta };
