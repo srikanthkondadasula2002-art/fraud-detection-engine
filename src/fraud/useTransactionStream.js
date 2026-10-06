@@ -70,6 +70,8 @@ export function useTransactionStream({
     mediumRisk: 0,
     lowRisk: 0,
     lastLatencyMs: 0,
+    avgLatencyMs: 0,
+    totalLatencyMs: 0,
   });
 
   // Stable references
@@ -120,13 +122,19 @@ export function useTransactionStream({
 
     // ── Update running statistics ───────────────────────────────────────────
     const riskLevel = fraud?.risk?.level || "low";
-    setStats((prev) => ({
-      totalSeen: prev.totalSeen + 1,
-      highRisk: riskLevel === "high" ? prev.highRisk + 1 : prev.highRisk,
-      mediumRisk: riskLevel === "medium" ? prev.mediumRisk + 1 : prev.mediumRisk,
-      lowRisk: riskLevel === "low" ? prev.lowRisk + 1 : prev.lowRisk,
-      lastLatencyMs: latencyMs,
-    }));
+    setStats((prev) => {
+      const nextTotal = prev.totalSeen + 1;
+      const nextTotalLatency = (prev.totalLatencyMs || 0) + latencyMs;
+      return {
+        totalSeen: nextTotal,
+        highRisk: riskLevel === "high" ? prev.highRisk + 1 : prev.highRisk,
+        mediumRisk: riskLevel === "medium" ? prev.mediumRisk + 1 : prev.mediumRisk,
+        lowRisk: riskLevel === "low" ? prev.lowRisk + 1 : prev.lowRisk,
+        lastLatencyMs: latencyMs,
+        totalLatencyMs: nextTotalLatency,
+        avgLatencyMs: Math.round((nextTotalLatency / nextTotal) * 100) / 100,
+      };
+    });
 
     // ── Add high/medium alerts ──────────────────────────────────────────────
     if (riskLevel === "high" || riskLevel === "medium") {
